@@ -7,6 +7,6 @@ Mena:\
 2- empezar el dut del emisor con base en los ejemplos subidos.\
 \
 Kenny:\
-1- hacer el afiche.\
+1- hacer el afiche.
 
 
