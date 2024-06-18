@@ -26,5 +26,14 @@ reg [5:0] wrtcount;//cuenta los bits leídos cuando se comienza la transferencia
 
 parameter freqdiv = 10'd2;//dividiremos la frecuencia por 2.
 
+//se genera el mdc:
+always @(posedge clk) begin
+  cout_freq <= cout_freq + 1;//se inicializa el contador
+  if(cout_freq >= (freqdiv - 1))begin
+    cout_freq <= 0;
+    mdc <= (cout_freq < freqdiv/2) ? 1'b1:1'b0;//el mdc se pone en alto cícilicamente
+  end
+end
 
+//efecto del reset:
 endmodule
