@@ -34,6 +34,29 @@ always @(posedge clk) begin
     mdc <= (cout_freq < freqdiv/2) ? 1'b1:1'b0;//el mdc se pone en alto cícilicamente
   end
 end
-
+always @(posedge clk) begin
 //efecto del reset:
+  if (reset == 0)begin //cuando reset esté en bajo se regresa al estado inicial y todas las salidas se ponene en 0
+    mdio_out = 0;
+    almacenamiento = t_data;
+    count = 0;
+    mdc = 0;
+    mdio_oe = 0;
+    rd_data = 0;
+    data_rdy = 0;
+    almacenamiento_lectura = 0;
+    wrtcount = 0;
+  end 
+  else begin //funcionaminento normal
+    mdio_out = mdio_out;
+    almacenamiento = almacenamiento;
+    count = count;
+    mdc = mdc;
+    mdio_oe = mdio_oe;
+    rd_data = rd_data;
+    data_rdy = data_rdy;
+    almacenamiento_lectura = almacenamiento_lectura;
+    wrtcount = wrtcount;
+  end
+end
 endmodule
