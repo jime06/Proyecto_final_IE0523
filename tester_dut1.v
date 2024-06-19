@@ -13,17 +13,21 @@ module tester_dut1(
 
 //acá se definen las pruebas que se van a realizar
 always begin//inicializamos el clk
-    #5 clk = ~clk
+    #2 clk = ~clk;
 end
 
 //prueba de encendido
 //preguntar: ¿pongo todas las pruebas en un solo intial begin? tengo un ejemplo en el que vene cada una en une indidtal begin por aparte.
 initial  begin
     clk = 0;
-    reset = 1;
-    t_data = 32'b00101111111001011001010001101101;//esta señal no debería encender
+    reset = 0;
 
-    #20 reset = 0;
-    #60 reset = 1;
+    #10 reset = 1;
+
+    //se prueba la máquina de estados
+    #10 t_data = 32'b01101111111001011001010001101111;//con este número deberia pasar al 2do estado
+
+    #100;
+    $finish;
 end
 endmodule
