@@ -27,7 +27,7 @@ initial  begin
     //se prueba la máquina de estados
     #10 t_data = 32'b01101111111001011001010001101111;//con este número deberia pasar al 2do estado
 
-    #10 t_data = 32'b01101111111001011001010001101111;//con este número pasa al tercer estado
+    #10 t_data = 32'b01001111111001011001010001101111;//con este número pasa al tercer estado
 
     #100;
     $finish;

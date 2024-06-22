@@ -82,6 +82,7 @@ end
 
 always @(*)begin
   $display("%d", t_data[31]);
+  $display("%d", t_data[30]);
   case (state)
     3'b001: begin
       if(t_data[31] == 0)//el último bit de t_data es 0
