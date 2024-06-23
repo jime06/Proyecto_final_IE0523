@@ -17,7 +17,7 @@ module dut1 (
 reg [2:0] state;
 reg [2:0] next_state;
 
-//variables internas para ka transacción
+//variables internas para la transacción
 reg [15:0] almacenamiento; //guarda los bits obtenidos en MDIO_in *preguntar ¿no sería más bien los bits de t_data
 reg [5:0] count; //contador
 reg cout_freq = 0;//determina si la frecuencia de salida se coloca en alto o bajo
