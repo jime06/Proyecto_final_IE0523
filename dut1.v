@@ -99,8 +99,11 @@ always @(*)begin
     end
 
     3'b100: begin
-      //se inicia la transacción de datos
-      $display("mdio_out");
+      //se envía la señal para iniciar la transmisión de datos
+      if(mdio_start == 1) begin
+        mdio_out = t_data; //mdio_out agarra el valor de t_data
+        $display("%b", t_data);
+      end
     end
 
     default: next_state = 3'b001; //si se recibe un valor no definido se vuelve a idle

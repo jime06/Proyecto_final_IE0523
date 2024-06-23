@@ -28,7 +28,11 @@ initial  begin
     #10 t_data = 32'b01101111111001011001010001101111;//con este número deberia pasar al 2do estado
 
     #10 t_data = 32'b01001111111001011001010001101111;//con este número pasa al tercer estado
-
+    
+    #10 t_data = 32'b01100111111001011001010001101111;
+    mdio_start = 1;
+    #4 mdio_start = 0;
+    
     #100;
     $finish;
 end
