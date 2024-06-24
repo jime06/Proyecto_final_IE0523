@@ -16,7 +16,7 @@ module dut1 (
 //variables internas para la máquinas de estados
 reg [2:0] state;
 reg [2:0] next_state;
-
+reg [31:0] almacen; //agregado por auro para lo de lecrura/escritura
 //variables internas para la transacción
 reg [15:0] almacenamiento; //guarda los bits obtenidos en MDIO_in *preguntar ¿no sería más bien los bits de t_data
 reg [5:0] count; //contador
@@ -25,7 +25,7 @@ reg [7:0] almacenamiento_lectura;//guarda los valores que serán cargados a rd_d
 reg [5:0] wrtcount;//cuenta los bits leídos cuando se comienza la transferencia por mdio_in
 
 parameter freqdiv = 10'd2;//dividiremos la frecuencia por 2.
-
+//linea de arriba no se usa 
 //se genera el mdc:
 always @(posedge clk) begin
   if (!reset)begin
@@ -109,4 +109,31 @@ always @(*)begin
     default: next_state = 3'b001; //si se recibe un valor no definido se vuelve a idle
   endcase
 end
+
+always @(posedge clk)begin
+  if ((t_data[31:0] == almacen[31:0])&&(mdio_start == 1))begin
+      mdio_out = almacen[n];
+      almacen = {almacen[n-1],1'b0};
+      count =count +1;
+  end else if ((t_data[31:0]!= almacen[31:0])&& (mdio_start ==1))begin
+      dio_out = almacen[n];
+      almacen = {almacen[n-1],1'b0};
+      count =count +1;
+  end else 
+  mdio_out = mdio_out;
+
+//escritura
+if () 
+  mdio_oe <=1;
+else mdio_oe = 0;
+
+//lectura
+if()
+mdio_oe <=1;
+else mdio_oe = 0;
+
+
+
+end
+
 endmodule
