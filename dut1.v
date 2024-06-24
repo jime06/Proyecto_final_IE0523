@@ -112,28 +112,27 @@ end
 
 always @(posedge clk)begin
   if ((t_data[31:0] == almacen[31:0])&&(mdio_start == 1))begin
-      mdio_out = almacen[n];
-      almacen = {almacen[n-1],1'b0};
+      mdio_out = almacen[31];
+      almacen = {almacen[31-1],1'b0};
       count =count +1;
   end else if ((t_data[31:0]!= almacen[31:0])&& (mdio_start ==1))begin
-      dio_out = almacen[n];
-      almacen = {almacen[n-1],1'b0};
+      mdio_out = almacen[31];
+      almacen = {almacen[31-1],1'b0};
       count =count +1;
   end else 
   mdio_out = mdio_out;
 
 //escritura
-if () 
+if (({t_data[30],t_data[29]} == 2'b01) && (count>=1) && (count<=31))
   mdio_oe <=1;
 else mdio_oe = 0;
 
 //lectura
-if()
-mdio_oe <=1;
+if (({t_data[30],t_data[29]} == 2'b10) && (count>=1) && (count<=31))
+  mdio_oe <=1;
 else mdio_oe = 0;
 
-
+if (mdio_oe == 0)
 
 end
-
 endmodule
