@@ -84,26 +84,37 @@ always @(*)begin
   //$display("%d", t_data[31]);
   //$display("%d", t_data[30]);
   case (state)
-    3'b001: begin
-      if(t_data[31] == 0)//el último bit de t_data es 0
-        state = 3'b010;
+    3'b001: begin //idle
+      if(t_data[29:28] == 01)//si op == 01 se pasa a escritura
+                             //si op == 10 se pasa a lectura 
+        state = 3'b010; 
       else
         state = 3'b001;
     end
 
-    3'b010: begin
-      if(t_data[30] == 1)
+    3'b010: begin//este sería el estado de escritura
+    //se pasan los 32 bits de t_data
+    // se tienen que pasar cada que mdc está en alto
+    //en modo escritura está en alto siempre que esté activo el modo escritura
+    
+    
+      /*if(t_data[28] == 1)
         state = 3'b100;
       else 
-        state = 3'b010;
+        state = 3'b010;*/
     end
 
-    3'b100: begin
-      //se envía la señal para iniciar la transmisión de datos
-      if(mdio_start == 1) begin
+    3'b100: begin//este sería el estado de lectura
+      //solo se pasan los primeros 16
+      //mdio_oe estaría en alto solo cuando se transmite t_data (16 ciclos)
+      //cuando se leen datos mdio_oe tiene que estar en bajo cuando se reciben datos
+
+      /*if(mdio_start == 1) begin
         mdio_out = t_data; //mdio_out agarra el valor de t_data
         $display("%b", t_data);
-      end
+      end*/
+      //hay que recibir los datos y se guaran en un registro interno.
+      //luego se sacan por rd_data
     end
 
     default: next_state = 3'b001; //si se recibe un valor no definido se vuelve a idle
