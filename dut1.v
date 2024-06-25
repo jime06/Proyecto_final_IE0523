@@ -81,8 +81,8 @@ always @(*)begin
 end
 
 always @(*)begin
-  $display("%d", t_data[31]);
-  $display("%d", t_data[30]);
+  //$display("%d", t_data[31]);
+  //$display("%d", t_data[30]);
   case (state)
     3'b001: begin
       if(t_data[31] == 0)//el último bit de t_data es 0
@@ -123,7 +123,7 @@ always @(posedge clk)begin
   mdio_out = mdio_out;
 
 //escritura
-if (({t_data[30],t_data[29]} == 2'b01) && (count>=1) && (count<=31))
+if (({t_data[29],t_data[28]} == 2'b01) && (count>=1) && (count<=31))
   mdio_oe <=1;
 else mdio_oe = 0;
 
@@ -132,7 +132,20 @@ if (({t_data[30],t_data[29]} == 2'b10) && (count>=1) && (count<=31))
   mdio_oe <=1;
 else mdio_oe = 0;
 
-if (mdio_oe == 0)
+if ((mdio_oe == 0)&&(count >=17))
+  wrtcount = wrtcount+1;
+else wrtcount = wrtcount;
 
+if ((mdio_oe == 0)&& (wrtcount <=17))
+  data_rdy = 1;
+else data_rdy = 0;
+
+if ((mdio_oe == 0) && (data_rdy == 0) && (1 <=wrtcount) && (wrtcount <= 16))
+  almacenamiento_lectura = {mdio_in,almacenamiento_lectura[(32-1)/2 : 1]};
+else almacenamiento_lectura = almacenamiento_lectura;
+
+if (data_rdy == 1)
+  rd_data <= almacenamiento_lectura;
+else rd_data = rd_data;
 end
 endmodule
