@@ -73,8 +73,9 @@ always @ (*) begin
             data_rdy = 1;
         if (posedge_mdc)
             next_bit_count = bit_count + 1;
-        if(!mdio_oe)
-            next_dato_rec[31 - bit_count] = mdio_in;
+
+        if(mdio_oe)
+            /*next_dato_rec[31 - bit_count]*/ rd_data = 32'h55555555;
     end
     endcase
 end
