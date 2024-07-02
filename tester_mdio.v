@@ -41,8 +41,8 @@ initial begin
     #10 mdio_in =0;  //6
     #10 mdio_in =1;  //5
     #10 mdio_in =0;  //4
-    #10 mdio_in =1;  //3
-    #10 mdio_in =0;  //2
+    #10 mdio_in =0;  //3
+    #10 mdio_in =1;  //2
     #10 mdio_in =1;  //1
     #10 mdio_in =0;  //0
     //mdio_in = 32'h55555555;

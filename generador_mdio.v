@@ -75,7 +75,7 @@ always @ (*) begin
             next_bit_count = bit_count + 1;
 
         if(mdio_oe)
-            /*next_dato_rec[31 - bit_count]*/ rd_data = 32'h55555555;
+            /*next_dato_rec[31 - bit_count]*/ rd_data = 32'b0110010101010101;
     end
     endcase
 end
