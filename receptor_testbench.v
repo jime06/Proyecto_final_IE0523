@@ -7,7 +7,7 @@ Jimena Gonzalez Jiménez B83443
 Profesora: Ana Eugenia Sanchez Villalobos
 */
 `include "mdio_rec.v"
-`include "tester.v"
+`include "receptor_tester.v"
 module testbench;
 wire rst, MDC, MDIO_OE, MDIO_OUT, MDIO_IN, WR_STB, MDIO_DONE;
 wire [15:0] RD_DATA, WR_DATA;
@@ -24,7 +24,7 @@ tester tester (.rst(rst), .MDC(MDC), .MDIO_OE(MDIO_OE), .MDIO_OUT(MDIO_OUT),
     .ADDR(ADDR),
     .WR_DATA(WR_DATA[15:0]));
 initial begin
-    $dumpfile("tb.vcd");
+    $dumpfile("rec.vcd");
     $dumpvars;
 end
 endmodule
