@@ -1,7 +1,6 @@
 # Proyecto_final_IE0523 
 Protocolo MDIO
 Grupo 02 
-Profesora:  Ana Eugenia Sanchez Villalobo
 -----------------------------------------
 Estudiantres:
 Aurora Matamoros Cuadra B84707 
