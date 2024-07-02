@@ -1,12 +1,11 @@
-# Proyecto_final_IE0523
-
-To do list:\
-\
-Mena:\
-1- borrar archivos viejos\
-2- empezar el dut del emisor con base en los ejemplos subidos.\
-\
-Kenny:\
-1- hacer el afiche.
-
-
+# Proyecto_final_IE0523 
+Protocolo MDIO
+Grupo 02 
+Profesora:  Ana Eugenia Sanchez Villalobo
+-----------------------------------------
+Estudiantres:
+Aurora Matamoros Cuadra B84707 
+Kenneth Rojas Rivera B96890
+Jimena Gonzalez Jiménez B83443 
+-----------------------------------------
+I ciclo 2024
